@@ -11,14 +11,14 @@
         border: 1px solid black;
       }
     </style>
-    <h2>Hello [[prop1]]</h2>
     <div id="config" hidden$=[[!config]]>
       <div>
-        Auth server URL:<input id=url value="{{authurl::input}}"></input>
+        Sim server URL:<input id=simurl value="{{simurl::input}}"></input>
       </div>
       <div>
-        Sim server URL:<input id=url value="{{simurl::input}}"></input>
+        Token:<input id=token value="{{token::input}}"></input>
       </div>
+      <a href={{simurl}}/keys.zip target="_blank">Download keys</a>
     </div>
   </template>
 
@@ -27,12 +27,16 @@
 
       is: 'gz-simulator',
 
+      tapKeys: function()  {
+        // Download file
+        console.log("DOWNLOAD KEYS")
+      },
       properties: {
-        authurl: {
+        simurl: {
           type: String,
           value: '',
         },
-        simurl: {
+        token: {
           type: String,
           value:'',
         },
