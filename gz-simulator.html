@@ -1,0 +1,47 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="gz-simulator">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      #config {
+        border: 1px solid black;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+    <div id="config" hidden$=[[!config]]>
+      <div>
+        Auth server URL:<input id=url value="{{authurl::input}}"></input>
+      </div>
+      <div>
+        Sim server URL:<input id=url value="{{simurl::input}}"></input>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'gz-simulator',
+
+      properties: {
+        authurl: {
+          type: String,
+          value: '',
+        },
+        simurl: {
+          type: String,
+          value:'',
+        },
+        config: {
+          type: Boolean,
+          value: false
+        }
+      },
+
+    });
+  </script>
+</dom-module>
