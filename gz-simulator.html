@@ -1,7 +1,10 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
 
 <dom-module id="gz-simulator">
+
   <template>
     <style>
       :host {
@@ -11,14 +14,27 @@
         border: 1px solid black;
       }
     </style>
+
     <div id="config" hidden$=[[!config]]>
+      <iron-ajax
+        id='ajax'
+        method='GET'
+        handle-as='document'
+        url='/keys.zip'
+      ></iron-ajax>
       <div>
-        Sim server URL:<input id=simurl value="{{simurl::input}}"></input>
+        Sim server URL:<input id=simurl value="{{url::input}}"></input>
       </div>
       <div>
         Token:<input id=token value="{{token::input}}"></input>
       </div>
-      <a href={{simurl}}/keys.zip target="_blank">Download keys</a>
+      <form method="get" action="keys.zip">
+        <button type="submit">Download keys</button>
+      </form>
+      <div>
+        <button type='button' on-tap='tapDownload'>Download keys js</button>
+      </div>
+      <a href={{url}}/keys.zip target="_blank">Download keys</a>
     </div>
   </template>
 
@@ -26,24 +42,33 @@
     Polymer({
 
       is: 'gz-simulator',
-
-      tapKeys: function()  {
-        // Download file
-        console.log("DOWNLOAD KEYS")
+      attached: function() {
+        console.log('gz-simulator attached (id = ' + this.id + ')')
       },
+
+      tapDownload: function()  {
+        // Download file
+        console.log("DOWNLOAD KEYS " + this.$.ajax.url)
+          this.$.ajax.params = {}
+          this.$.ajax.generateRequest()
+      },
+
       properties: {
-        simurl: {
+        url: {
           type: String,
-          value: '',
+          value: 'the url of the sim server',
         },
+
         token: {
           type: String,
           value:'',
         },
+
         config: {
           type: Boolean,
           value: false
         }
+
       },
 
     });
