@@ -11,31 +11,19 @@
         display: block;
       }
       #config {
-        border: 1px solid black;
+        /* border: 1px solid black; */
       }
     </style>
-
     <div id="config" hidden$=[[!config]]>
-      <iron-ajax
-        id='ajax'
-        method='GET'
-        handle-as='document'
-        url='/keys.zip'
-      ></iron-ajax>
       <div>
         Sim server URL:<input id=simurl value="{{url::input}}"></input>
       </div>
+      <a href={{url}} target="_blank">{{url}}</a>
       <div>
         Token:<input id=token value="{{token::input}}"></input>
       </div>
-      <form method="get" action="keys.zip">
-        <button type="submit">Download keys</button>
-      </form>
-      <div>
-        <button type='button' on-tap='tapDownload'>Download keys js</button>
-      </div>
-      <a href={{url}}/keys.zip target="_blank">Download keys</a>
     </div>
+    <a href={{url}}/keys.zip?token={{token}}>{{text}}</a>
   </template>
 
   <script>
@@ -44,13 +32,6 @@
       is: 'gz-simulator',
       attached: function() {
         console.log('gz-simulator attached (id = ' + this.id + ')')
-      },
-
-      tapDownload: function()  {
-        // Download file
-        console.log("DOWNLOAD KEYS " + this.$.ajax.url)
-          this.$.ajax.params = {}
-          this.$.ajax.generateRequest()
       },
 
       properties: {
@@ -64,11 +45,15 @@
           value:'',
         },
 
+        text: {
+          type: String,
+          value:'download keys',
+        },
+
         config: {
           type: Boolean,
           value: false
         }
-
       },
 
     });
