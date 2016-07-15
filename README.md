@@ -2,6 +2,11 @@
 
 Manages a simulator instance (download keys)
 
+documentation: [https://osrf.github.io/gz-simulator/components/gz-simulator](https://osrf.github.io/gz-simulator/components/gz-simulator)
+
+demo: [https://osrf.github.io/gz-simulator/components/gz-simulator/demo](https://osrf.github.io/gz-simulator/components/gz-simulator/demo)
+
+
 ## Install the Polymer-CLI
 
 First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
