@@ -15,12 +15,21 @@
     </style>
   </head>
   <body>
-
+    The gz-simulator tag's configuration UI is visible when the attribute "config" is present.
+    It requires a valid Cloudsim authentity token.
+    You can get a token by using the gz-token component against a Cloudsim authentication server.
+    <br>
+    <a href="https://bitbucket.org/osrf/cloudsim-auth">cloudsim-auth repository</a>
+    <a href=https://github.com/osrf/gz-token">gz-token repository</a>
+    <a href="https://osrf.github.io/gz-token/components/gz-token/demo/">gz-token demo</a>
+    <br>
     <div class="vertical-section-container centered">
       <h3>Basic gz-simulator Demo</h3>
       <demo-snippet>
         <template>
-          <gz-simulator></gz-simulator>
+          <gz-simulator
+            config
+          ></gz-simulator>
         </template>
       </demo-snippet>
     </div>
