@@ -1,0 +1,61 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+
+<dom-module id="gz-simulator">
+
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      #config {
+        /* border: 1px solid black; */
+      }
+    </style>
+    <div id="config" hidden$=[[!config]]>
+      <div>
+        Sim server URL:<input id=simurl value="{{url::input}}"></input>
+      </div>
+      <a href={{url}} target="_blank">{{url}}</a>
+      <div>
+        Token:<input id=token value="{{token::input}}"></input>
+      </div>
+    </div>
+    <a href={{url}}/keys.zip?token={{token}}>{{text}}</a>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'gz-simulator',
+      attached: function() {
+        console.log('gz-simulator attached (id = ' + this.id + ')')
+      },
+
+      properties: {
+        url: {
+          type: String,
+          value: 'the url of the sim server',
+        },
+
+        token: {
+          type: String,
+          value:'',
+        },
+
+        text: {
+          type: String,
+          value:'download keys',
+        },
+
+        config: {
+          type: Boolean,
+          value: false
+        }
+      },
+
+    });
+  </script>
+</dom-module>
